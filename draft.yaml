@@ -1,0 +1,61 @@
+models:
+  # ...
+  Equipement:
+    equipement_id: unsignedInteger unique
+    matricule: string unique
+    nom: string nullable
+    type: string
+    marque: string
+    modele: string
+    numero_de_serie: string
+    date_achat: datetime
+    etat: enum:bon_etat,en_reparation,endommage
+
+    relationships:
+      belongsTo: Emplacement, User
+      hasMany: Maintenance
+
+
+  # ...
+  # User:
+  #   user_id: unsignedInteger unique autoincrement
+  #   name: string
+  #   prenom : string nullable
+  #   email: string
+  #   telephone: string nullable
+  #   role: string default:user
+  #   poste : string nullable
+  #   password: string
+
+  #   relationships :
+  #     hasMany: Equipement
+
+
+  # ...
+  Emplacement:
+    emplacement_id: unsignedInteger
+    nom: string
+    adresse: string
+
+    relationships:
+      hasMany: Equipement
+
+  # ...
+  Maintenance :
+    maintenance_id: unsignedInteger
+    id_equipement: string
+    date : datetime
+    description : string nullable
+    cout : float
+    etat : enum:en_cours,termine
+
+    relationships:
+      belongsTo: Equipement
+
+  # ...
+
+
+
+
+controllers:
+  # ...

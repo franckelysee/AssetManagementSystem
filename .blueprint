@@ -1,0 +1,15 @@
+created:
+    - database/factories/EquipementFactory.php
+    - database/factories/EmplacementFactory.php
+    - database/factories/MaintenanceFactory.php
+    - database/migrations/2024_08_02_161333_create_equipements_table.php
+    - database/migrations/2024_08_02_161334_create_emplacements_table.php
+    - database/migrations/2024_08_02_161335_create_maintenances_table.php
+    - app/Models/Equipement.php
+    - app/Models/Emplacement.php
+    - app/Models/Maintenance.php
+models:
+    User: { name: string, email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string nullable' }
+    Equipement: { equipement_id: 'unsignedInteger unique', matricule: 'string unique', nom: 'string nullable', type: string, marque: string, modele: string, numero_de_serie: string, date_achat: datetime, etat: 'enum:bon_etat,en_reparation,endommage', relationships: { belongsTo: 'Emplacement, User', hasMany: Maintenance } }
+    Emplacement: { emplacement_id: unsignedInteger, nom: string, adresse: string, relationships: { hasMany: Equipement } }
+    Maintenance: { maintenance_id: unsignedInteger, id_equipement: string, date: datetime, description: 'string nullable', cout: float, etat: 'enum:en_cours,termine', relationships: { belongsTo: Equipement } }
