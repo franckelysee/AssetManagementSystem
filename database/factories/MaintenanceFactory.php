@@ -22,12 +22,11 @@ class MaintenanceFactory extends Factory
     public function definition(): array
     {
         return [
-            'maintenance_id' => $this->faker->randomNumber(),
             'id_equipement' => $this->faker->word(),
             'date' => $this->faker->dateTime(),
             'description' => $this->faker->text(),
             'cout' => $this->faker->randomFloat(0, 0, 9999999999.),
-            'etat' => $this->faker->randomElement(["en_cours","termine"]),
+            'status' => $this->faker->word(),
             'equipement_id' => Equipement::factory(),
         ];
     }

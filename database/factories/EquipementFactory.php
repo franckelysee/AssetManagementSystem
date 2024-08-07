@@ -23,7 +23,6 @@ class EquipementFactory extends Factory
     public function definition(): array
     {
         return [
-            'equipement_id' => $this->faker->randomNumber(),
             'matricule' => $this->faker->word(),
             'nom' => $this->faker->word(),
             'type' => $this->faker->word(),
@@ -31,7 +30,7 @@ class EquipementFactory extends Factory
             'modele' => $this->faker->word(),
             'numero_de_serie' => $this->faker->word(),
             'date_achat' => $this->faker->dateTime(),
-            'etat' => $this->faker->randomElement(["bon_etat","en_reparation","endommage"]),
+            'etat' => $this->faker->word(),
             'emplacement_id' => Emplacement::factory(),
             'user_id' => User::factory(),
         ];

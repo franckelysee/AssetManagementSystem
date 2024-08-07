@@ -16,7 +16,6 @@ class Emplacement extends Model
      * @var array
      */
     protected $fillable = [
-        'emplacement_id',
         'nom',
         'adresse',
     ];
@@ -28,7 +27,6 @@ class Emplacement extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'emplacement_id' => 'integer',
     ];
 
     public function equipements(): HasMany

@@ -21,7 +21,6 @@ class EmplacementFactory extends Factory
     public function definition(): array
     {
         return [
-            'emplacement_id' => $this->faker->randomNumber(),
             'nom' => $this->faker->word(),
             'adresse' => $this->faker->word(),
         ];

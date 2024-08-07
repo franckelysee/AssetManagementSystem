@@ -17,7 +17,6 @@ class Equipement extends Model
      * @var array
      */
     protected $fillable = [
-        'equipement_id',
         'matricule',
         'nom',
         'type',
@@ -37,7 +36,6 @@ class Equipement extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'equipement_id' => 'integer',
         'date_achat' => 'datetime',
         'emplacement_id' => 'integer',
         'user_id' => 'integer',

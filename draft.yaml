@@ -1,7 +1,6 @@
 models:
   # ...
   Equipement:
-    equipement_id: unsignedInteger unique
     matricule: string unique
     nom: string nullable
     type: string
@@ -9,7 +8,7 @@ models:
     modele: string
     numero_de_serie: string
     date_achat: datetime
-    etat: enum:bon_etat,en_reparation,endommage
+    etat: string
 
     relationships:
       belongsTo: Emplacement, User
@@ -33,7 +32,6 @@ models:
 
   # ...
   Emplacement:
-    emplacement_id: unsignedInteger
     nom: string
     adresse: string
 
@@ -42,12 +40,11 @@ models:
 
   # ...
   Maintenance :
-    maintenance_id: unsignedInteger
     id_equipement: string
     date : datetime
     description : string nullable
     cout : float
-    etat : enum:en_cours,termine
+    status : string
 
     relationships:
       belongsTo: Equipement

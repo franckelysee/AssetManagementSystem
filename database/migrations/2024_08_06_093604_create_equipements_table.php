@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('equipements', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('equipement_id')->unique();
             $table->string('matricule')->unique();
             $table->string('nom')->nullable();
             $table->string('type');
@@ -21,7 +20,7 @@ return new class extends Migration
             $table->string('modele');
             $table->string('numero_de_serie');
             $table->dateTime('date_achat');
-            $table->enum('etat', ["bon_etat","en_reparation","endommage"]);
+            $table->string('etat');
             $table->foreignId('emplacement_id');
             $table->foreignId('user_id');
             $table->timestamps();

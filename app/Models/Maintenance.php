@@ -16,12 +16,11 @@ class Maintenance extends Model
      * @var array
      */
     protected $fillable = [
-        'maintenance_id',
         'id_equipement',
         'date',
         'description',
         'cout',
-        'etat',
+        'status',
         'equipement_id',
     ];
 
@@ -32,7 +31,6 @@ class Maintenance extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'maintenance_id' => 'integer',
         'date' => 'datetime',
         'cout' => 'float',
         'equipement_id' => 'integer',

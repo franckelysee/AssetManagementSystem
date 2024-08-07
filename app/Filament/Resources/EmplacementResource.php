@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
-use App\Models\User;
+use App\Filament\Resources\EmplacementResource\Pages;
+use App\Filament\Resources\EmplacementResource\RelationManagers;
+use App\Models\Emplacement;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,32 +13,24 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class UserResource extends Resource
+class EmplacementResource extends Resource
 {
-    protected static ?string $model = User::class;
+    protected static ?string $model = Emplacement::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationGroup = 'Administration';
+    protected static ?string $navigationGroup = 'Inventaire';
+
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                Forms\Components\TextInput::make('emplacement_id')
                     ->required(),
-                Forms\Components\TextInput::make('prenom'),
-                Forms\Components\TextInput::make('email')
-                    ->email()
+                Forms\Components\TextInput::make('nom')
                     ->required(),
-                Forms\Components\TextInput::make('telephone')
-                    ->tel(),
-                Forms\Components\TextInput::make('role')
+                Forms\Components\TextInput::make('adresse')
                     ->required(),
-                Forms\Components\TextInput::make('poste'),
-                Forms\Components\TextInput::make('password')
-                    ->password()
-                    ->required()
-                    ->hiddenOn('edit'),
             ]);
     }
 
@@ -46,17 +38,9 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                Tables\Columns\TextColumn::make('nom')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('prenom')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('email')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('telephone')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('role')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('poste')
+                Tables\Columns\TextColumn::make('adresse')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -71,9 +55,7 @@ class UserResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -92,10 +74,9 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
-            'edit' => Pages\EditUser::route('/{record}/edit'),
-
+            'index' => Pages\ListEmplacements::route('/'),
+            'create' => Pages\CreateEmplacement::route('/create'),
+            'edit' => Pages\EditEmplacement::route('/{record}/edit'),
         ];
     }
 }

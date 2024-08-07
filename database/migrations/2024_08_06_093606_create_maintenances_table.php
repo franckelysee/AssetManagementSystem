@@ -13,12 +13,11 @@ return new class extends Migration
     {
         Schema::create('maintenances', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('maintenance_id');
             $table->string('id_equipement');
             $table->dateTime('date');
             $table->string('description')->nullable();
             $table->float('cout');
-            $table->enum('etat', ["en_cours","termine"]);
+            $table->string('status');
             $table->foreignId('equipement_id');
             $table->timestamps();
         });
